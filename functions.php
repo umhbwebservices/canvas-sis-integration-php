@@ -3,7 +3,7 @@
 //Generate this token on an account with full administrative privileges.
 // You should probably consider making an API account, as tying the token to a person
 // could have negative effects when the person leaves.
-$access_token = "2335~5AOZJMvsQZ8beLfkxwXb4NSpZuXZlbzcQpRPJG4lNhXn3QrOt38V0P24LUDbI7Q1";
+$access_token = "YOUR-CANVAS-TOKEN";
 
 //Where on this machine are the SIS files located?
 //It's easiest to create a Samba share and have the SIS dump CSV files into it.
@@ -11,7 +11,7 @@ $samba_share = "/srv/samba/canvas/";
 
 //Canvas Base URL
 // Change this to be your Canvas Base URL
-$canvas_base_url="https://umhb.instructure.com";
+$canvas_base_url="https://YOURINSTITUTION.instructure.com";
 
 // check file freshness
 function file_fresh ($file) {
@@ -48,10 +48,10 @@ function update_avatar ( $ID, $student_or_staff='student' ) {
 	$nine_digit = str_pad($ID, 9, "0", STR_PAD_LEFT);
 
 	if ($student_or_staff == 'staff') {
-		$avatar_url = 'https://www.umhb.edu/emppic-tn/'.$ID;
+		$avatar_url = 'https://www.YOURINSTITUTION.edu/path/to/employee/pics/'.$ID;
 	}
 	else {
-		$avatar_url = 'https://www2.umhb.edu/student-photos/'.$nine_digit.'.jpg';
+		$avatar_url = 'https://www.YOURINSTITUTION.edu/path/to/student/pics/'.$nine_digit.'.jpg';
 	}
 
 	system("curl $url -X PUT -F 'user[avatar][url]=$avatar_url' -H 'Authorization: Bearer $access_token'");
